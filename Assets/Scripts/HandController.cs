@@ -127,14 +127,14 @@ public class HandController : MonoBehaviour
         {
             for (int i = 0; i < handBonesCount; i++)
             {
-                if (FingerTransforms[i] != null) FingerTransforms[i].localRotation = Quaternion.Euler(Eulers[i]);
+                if (FingerTransforms.Count > i && FingerTransforms[i] != null) FingerTransforms[i].localRotation = Quaternion.Euler(Eulers[i]);
             }
         }
         if (RightEnable)
         {
             for (int i = 0; i < handBonesCount; i++)
             {
-                if (FingerTransforms[i + handBonesCount] != null) FingerTransforms[i + handBonesCount].localRotation = Quaternion.Euler(Eulers[i + handBonesCount]);
+                if (FingerTransforms.Count > i + handBonesCount && FingerTransforms[i + handBonesCount] != null) FingerTransforms[i + handBonesCount].localRotation = Quaternion.Euler(Eulers[i + handBonesCount]);
             }
         }
     }

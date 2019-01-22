@@ -27,6 +27,7 @@ VirtualMotionCaptureControlPanel.exe
 VirtualMotionCaptureControlPanel.exe.config
 docs/vendor*
 Photos*
+Assets/LeapMotion*
 
 # Visual Studio cache directory
 .vs/
