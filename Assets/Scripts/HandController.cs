@@ -107,7 +107,7 @@ public class HandController : MonoBehaviour
         return eulers;
     }
     */
-    private List<Vector3> eulersLerp(List<Vector3> startEulers, List<Vector3> endEulers, float t)
+    public List<Vector3> eulersLerp(List<Vector3> startEulers, List<Vector3> endEulers, float t)
     {
         var eulers = new List<Vector3>();
         for (int i = 0; i < startEulers.Count; i++)
@@ -115,6 +115,17 @@ public class HandController : MonoBehaviour
             var calcStart = new Vector3(startEulers[i].x > 180 ? startEulers[i].x - 360 : startEulers[i].x, startEulers[i].y > 180 ? startEulers[i].y - 360 : startEulers[i].y, startEulers[i].z > 180 ? startEulers[i].z - 360 : startEulers[i].z);
             var calcEnd = new Vector3(endEulers[i].x > 180 ? endEulers[i].x - 360 : endEulers[i].x, endEulers[i].y > 180 ? endEulers[i].y - 360 : endEulers[i].y, endEulers[i].z > 180 ? endEulers[i].z - 360 : endEulers[i].z);
             eulers.Add(Vector3.Lerp(calcStart, calcEnd, t));
+        }
+        return eulers;
+    }
+    public List<Vector3> eulersLerps(List<Vector3> startEulers, List<Vector3> endEulers, List<float> ts)
+    {
+        var eulers = new List<Vector3>();
+        for (int i = 0; i < startEulers.Count; i++)
+        {
+            var calcStart = new Vector3(startEulers[i].x > 180 ? startEulers[i].x - 360 : startEulers[i].x, startEulers[i].y > 180 ? startEulers[i].y - 360 : startEulers[i].y, startEulers[i].z > 180 ? startEulers[i].z - 360 : startEulers[i].z);
+            var calcEnd = new Vector3(endEulers[i].x > 180 ? endEulers[i].x - 360 : endEulers[i].x, endEulers[i].y > 180 ? endEulers[i].y - 360 : endEulers[i].y, endEulers[i].z > 180 ? endEulers[i].z - 360 : endEulers[i].z);
+            eulers.Add(Vector3.Lerp(calcStart, calcEnd, ts[i]));
         }
         return eulers;
     }
@@ -159,6 +170,7 @@ public class HandController : MonoBehaviour
 
     public List<Vector3> CalcHandEulerAngles(List<int> angles)
     {
+        if (FingerDefaultVectors.Count == 0) return null;
         var handBonesCount = FingerBones.Count / 2;
         var eulers = new Vector3[FingerBones.Count];
         for (int i = 0; i < handBonesCount; i += 3)
